@@ -47,7 +47,7 @@ function App() {
       learnBtn: "Learn More",
       aboutTitle: "A men’s club for real life.",
       aboutText1:
-        "DRIVE is created for men who want more than surface-level conversations.",
+        "DRIVE is for men who are tired of empty conversations and fake connections.",
       aboutText2:
         "We talk about immigration, family, pressure, work, faith, identity, and the struggles many men carry silently.",
       why: "Why DRIVE",
