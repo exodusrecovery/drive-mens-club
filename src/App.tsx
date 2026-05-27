@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 function App() {
   const [entered, setEntered] = useState(false)
   const [soundOn, setSoundOn] = useState(false)
-  const [language, setLanguage] = useState<"en" | "ru">("en")
+  const [language, setLanguage] = useState<"en" | "ru" | "ua">("en")
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
@@ -54,16 +54,34 @@ function App() {
       whyTitle:
         "Many men are surrounded by people, but still feel alone.",
       whyItems: [
-        "Pressure they never talk about.",
-        "Immigration challenges and uncertainty.",
-        "Family, work, stress, and silent battles.",
-        "No real place to be honest.",
-        "No strong circle of support.",
-        "A deep need for faith and purpose.",
-      ],
+  {
+    title: "Pressure they never talk about.",
+    desc: "The weight men carry silently — responsibility, expectations, stress, and inner battles.",
+  },
+  {
+    title: "Immigration challenges and uncertainty.",
+    desc: "Real conversations about adapting, documents, work, family, and life in a new country.",
+  },
+  {
+    title: "Family, work, stress, and silent battles.",
+    desc: "A space to talk honestly about marriage, parenting, pressure, and emotional fatigue.",
+  },
+  {
+    title: "No real place to be honest.",
+    desc: "Many men have people around them, but no safe place to speak openly.",
+  },
+  {
+    title: "No strong circle of support.",
+    desc: "DRIVE helps men build healthy connections instead of living isolated.",
+  },
+  {
+    title: "A deep need for faith and purpose.",
+    desc: "Men need more than survival — they need direction, meaning, and God.",
+  },
+],
       whyText:
         "DRIVE was created to give men a place for real conversations, support, connection, growth, and faith.",
-      topicsTitle: "Real topics for modern men.",
+      topicsTitle: "Real topics for men.",
       topicsList: [
         "Immigration & Life in America",
         "Family & Relationships",
@@ -102,14 +120,32 @@ function App() {
       why: "Почему DRIVE",
       whyTitle:
         "Многие мужчины окружены людьми, но внутри остаются одинокими.",
-      whyItems: [
-        "Давление, о котором они молчат.",
-        "Иммиграция и постоянная неопределенность.",
-        "Семья, работа, стресс и внутренние битвы.",
-        "Отсутствие места, где можно быть настоящим.",
-        "Недостаток сильного мужского окружения.",
-        "Глубокая потребность в вере и смысле.",
-      ],
+        whyItems: [
+          {
+            title: "Давление, о котором они молчат.",
+            desc: "Ответственность, ожидания, стресс и внутренние битвы, которые мужчины часто несут молча.",
+          },
+          {
+            title: "Иммиграция и постоянная неопределенность.",
+            desc: "Разговоры о жизни в новой стране, документах, работе, семье и адаптации.",
+          },
+          {
+            title: "Семья, работа, стресс и внутренние битвы.",
+            desc: "Место, где можно честно говорить о браке, семье, давлении и усталости.",
+          },
+          {
+            title: "Отсутствие места, где можно быть настоящим.",
+            desc: "Многие мужчины окружены людьми, но не имеют безопасного места для честного разговора.",
+          },
+          {
+            title: "Недостаток сильного мужского окружения.",
+            desc: "DRIVE помогает мужчинам строить здоровые связи и не жить в изоляции.",
+          },
+          {
+            title: "Глубокая потребность в вере и смысле.",
+            desc: "Мужчине нужно больше, чем просто выживать — ему нужны направление, смысл и Бог.",
+          },
+        ],
       whyText:
         "DRIVE создан, чтобы мужчины могли находить поддержку, общение, рост и веру.",
       topicsTitle: "Настоящие темы для современных мужчин.",
@@ -130,6 +166,72 @@ function App() {
       registerBtn: "Регистрация",
       soundOn: "Звук Вкл",
       soundOff: "Звук Выкл",
+    },
+    ua: {
+      about: "Про Нас",
+      topics: "Теми",
+      join: "Приєднатися",
+      enter: "Увійти в DRIVE",
+      enterBtn: "Увійти",
+      heroTitle: "Ти не повинен проходити життя сам.",
+      heroText:
+        "DRIVE — це чоловічий клуб для справжніх розмов, підтримки, віри, спілкування та розвитку чоловіків, які проходять через життя, сім’ю, імміграцію, тиск і пошук сенсу.",
+      joinBtn: "Приєднатися",
+      learnBtn: "Детальніше",
+      aboutTitle: "Чоловічий клуб для справжнього життя.",
+      aboutText1:
+        "DRIVE створений для чоловіків, яким потрібні не поверхневі розмови.",
+      aboutText2:
+        "Ми говоримо про імміграцію, сім’ю, тиск, роботу, віру, особистість і внутрішню боротьбу чоловіків.",
+      why: "Чому DRIVE",
+      whyTitle:
+        "Багато чоловіків оточені людьми, але всередині залишаються самотніми.",
+      whyItems: [
+        {
+          title: "Тиск, про який вони мовчать.",
+          desc: "Відповідальність, очікування, стрес і внутрішні битви, які чоловіки часто несуть мовчки.",
+        },
+        {
+          title: "Імміграція та постійна невизначеність.",
+          desc: "Розмови про життя в новій країні, документи, роботу, сім’ю та адаптацію.",
+        },
+        {
+          title: "Сім’я, робота, стрес і внутрішні битви.",
+          desc: "Місце, де можна чесно говорити про шлюб, сім’ю, тиск і втому.",
+        },
+        {
+          title: "Відсутність місця, де можна бути справжнім.",
+          desc: "Багато чоловіків оточені людьми, але не мають безпечного місця для чесної розмови.",
+        },
+        {
+          title: "Недостатньо сильного чоловічого оточення.",
+          desc: "DRIVE допомагає чоловікам будувати здорові зв’язки та не жити в ізоляції.",
+        },
+        {
+          title: "Глибока потреба у вірі та сенсі.",
+          desc: "Чоловікові потрібно більше, ніж просто виживати — йому потрібні напрямок, сенс і Бог.",
+        },
+      ],
+      whyText:
+        "DRIVE створений, щоб чоловіки могли знаходити підтримку, спілкування, розвиток і віру.",
+      topicsTitle: "Справжні теми для чоловіків.",
+      topicsList: [
+        "Імміграція та життя у США",
+        "Сім’я та стосунки",
+        "Стрес і тиск",
+        "Віра та сенс",
+        "Бізнес і робота",
+        "Залежності та відновлення",
+        "Лідерство",
+        "Дисципліна",
+        "Справжні розмови",
+      ],
+      nextMeeting: "Приєднуйся до наступної зустрічі",
+      registerText:
+        "Реєструйся для оновлень, зустрічей та подій DRIVE.",
+      registerBtn: "Реєстрація",
+      soundOn: "Звук Увімк",
+      soundOff: "Звук Вимк",
     },
   }
 
@@ -187,30 +289,43 @@ function App() {
               </nav>
 
               <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em]">
-                <button
-                  onClick={() => setLanguage("en")}
-                  className={`transition ${
-                    language === "en"
-                      ? "text-white"
-                      : "text-zinc-500 hover:text-white"
-                  }`}
-                >
-                  EN
-                </button>
+  <button
+    onClick={() => setLanguage("en")}
+    className={`transition ${
+      language === "en"
+        ? "text-white"
+        : "text-zinc-500 hover:text-white"
+    }`}
+  >
+    EN
+  </button>
 
-                <span className="text-zinc-600">|</span>
+  <span className="text-zinc-600">|</span>
 
-                <button
-                  onClick={() => setLanguage("ru")}
-                  className={`transition ${
-                    language === "ru"
-                      ? "text-white"
-                      : "text-zinc-500 hover:text-white"
-                  }`}
-                >
-                  RU
-                </button>
-              </div>
+  <button
+    onClick={() => setLanguage("ru")}
+    className={`transition ${
+      language === "ru"
+        ? "text-white"
+        : "text-zinc-500 hover:text-white"
+    }`}
+  >
+    RU
+  </button>
+
+  <span className="text-zinc-600">|</span>
+
+  <button
+    onClick={() => setLanguage("ua")}
+    className={`transition ${
+      language === "ua"
+        ? "text-white"
+        : "text-zinc-500 hover:text-white"
+    }`}
+  >
+    UA
+  </button>
+</div>
             </div>
           </div>
         </header>
@@ -296,16 +411,36 @@ function App() {
             </h2>
 
             <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {text.whyItems.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-3xl border border-white/10 bg-zinc-950 p-7"
-                >
-                  <p className="text-lg font-semibold text-zinc-200">
-                    {item}
-                  </p>
-                </div>
-              ))}
+            {text.whyItems.map((item) => (
+  <div
+    key={item.title}
+    className="
+group
+relative
+min-h-[120px]
+rounded-[2rem]
+border
+border-white/10
+bg-white/[0.03]
+backdrop-blur-xl
+p-7
+shadow-[0_0_30px_rgba(0,0,0,0.45)]
+transition-all
+duration-500
+hover:border-amber-400/30
+hover:bg-white/[0.05]
+hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
+"
+  >
+    <p className="text-lg font-semibold leading-relaxed text-zinc-100 transition duration-300 group-hover:text-amber-300">
+      {item.title}
+    </p>
+
+    <p className="mt-4 max-h-0 overflow-hidden text-sm leading-relaxed text-zinc-400 opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100">
+      {item.desc}
+    </p>
+  </div>
+))}
             </div>
 
             <p className="mt-14 max-w-3xl text-xl leading-relaxed text-zinc-300">
@@ -324,7 +459,17 @@ function App() {
               {text.topicsList.map((topic) => (
                 <div
                   key={topic}
-                  className="rounded-3xl border border-white/10 bg-zinc-950 p-7 transition hover:border-amber-400/40 hover:bg-zinc-900"
+                  className="
+group
+rounded-[2rem]
+bg-white/[0.02]
+px-7
+py-5
+backdrop-blur-xl
+transition-all
+duration-500
+hover:bg-white/[0.05]
+"
                 >
                   <p className="text-lg font-semibold">{topic}</p>
                 </div>
