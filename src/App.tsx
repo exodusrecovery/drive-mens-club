@@ -341,9 +341,9 @@ function App() {
                 EST. 2026 • Philadelphia
               </p>
 
-              <h1 className="text-5xl md:text-7xl font-black uppercase leading-[0.92] tracking-tight">
-                {text.heroTitle}
-              </h1>
+              <h1 className="text-4xl md:text-6xl font-black uppercase leading-[0.92] tracking-tight">
+  {text.heroTitle}
+</h1>
 
               <p className="mt-8 max-w-2xl text-lg md:text-xl leading-relaxed text-zinc-300">
                 {text.heroText}
