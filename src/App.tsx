@@ -38,6 +38,7 @@ function App() {
       about: "About",
       topics: "Topics",
       join: "Join",
+      login: "Log in",
       enter: "Enter DRIVE",
       enterBtn: "Enter Experience",
       heroTitle: "You don’t have to do life alone.",
@@ -105,6 +106,7 @@ function App() {
       about: "О Нас",
       topics: "Темы",
       join: "Вступить",
+      login: "Вход",
       enter: "Войти в DRIVE",
       enterBtn: "Войти",
       heroTitle: "Ты не должен проходить жизнь один.",
@@ -171,6 +173,7 @@ function App() {
       about: "Про Нас",
       topics: "Теми",
       join: "Приєднатися",
+      login: "Вхід",
       enter: "Увійти в DRIVE",
       enterBtn: "Увійти",
       heroTitle: "Ти не повинен проходити життя сам.",
@@ -326,6 +329,13 @@ function App() {
     UA
   </button>
 </div>
+
+              <a
+                href="/cabinet/login"
+                className="rounded-full border border-white/20 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-black"
+              >
+                {text.login}
+              </a>
             </div>
           </div>
         </header>

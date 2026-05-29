@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/cabinet", "destination": "https://drive-fawn-seven.vercel.app/cabinet" },
+    { "source": "/cabinet/:path*", "destination": "https://drive-fawn-seven.vercel.app/cabinet/:path*" }
+  ]
+}
