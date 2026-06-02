@@ -1,11 +1,47 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+
+type ClubEvent = {
+  id: string
+  title: string
+  description: string | null
+  location: string
+  event_date: string
+  ends_at: string | null
+  image_url: string | null
+  capacity: number | null
+}
 
 function App() {
   const [entered, setEntered] = useState(false)
   const [soundOn, setSoundOn] = useState(false)
   const [language, setLanguage] = useState<"en" | "ru" | "ua">("en")
+  const [events, setEvents] = useState<ClubEvent[]>([])
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  // Pull real upcoming events from the cabinet (proxied at /cabinet). Soft
+  // failure: if it's unreachable, the section just stays hidden.
+  useEffect(() => {
+    let active = true
+    fetch("/cabinet/api/public/events")
+      .then((r) => (r.ok ? r.json() : { events: [] }))
+      .then((d) => {
+        if (active) setEvents(Array.isArray(d?.events) ? d.events : [])
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const locale = language === "ru" ? "ru-RU" : language === "ua" ? "uk-UA" : "en-US"
+  const formatEventDate = (iso: string) =>
+    new Date(iso).toLocaleString(locale, {
+      day: "numeric",
+      month: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
 
   const enterSite = async () => {
     setEntered(true)
@@ -98,6 +134,11 @@ function App() {
       registerText:
         "Register for updates, upcoming meetings, and DRIVE events.",
       registerBtn: "Register Now",
+      eventsNav: "Events",
+      eventsEyebrow: "Upcoming",
+      eventsTitle: "Club events.",
+      eventsText: "Real meetings, dinners, and gatherings. Show up.",
+      eventsCta: "Join DRIVE",
       soundOn: "Sound On",
       soundOff: "Sound Off",
     },
@@ -166,6 +207,11 @@ function App() {
       registerText:
         "Регистрируйся для обновлений, встреч и событий DRIVE.",
       registerBtn: "Регистрация",
+      eventsNav: "События",
+      eventsEyebrow: "Ближайшие",
+      eventsTitle: "События клуба.",
+      eventsText: "Настоящие встречи, ужины и выезды. Приходи.",
+      eventsCta: "Присоединиться",
       soundOn: "Звук Вкл",
       soundOff: "Звук Выкл",
     },
@@ -233,6 +279,11 @@ function App() {
       registerText:
         "Реєструйся для оновлень, зустрічей та подій DRIVE.",
       registerBtn: "Реєстрація",
+      eventsNav: "Події",
+      eventsEyebrow: "Найближчі",
+      eventsTitle: "Події клубу.",
+      eventsText: "Справжні зустрічі, вечері та виїзди. Приходь.",
+      eventsCta: "Приєднатися",
       soundOn: "Звук Увімк",
       soundOff: "Звук Вимк",
     },
@@ -285,6 +336,12 @@ function App() {
                 <a href="#topics" className="hover:text-white transition">
                   {text.topics}
                 </a>
+
+                {events.length > 0 && (
+                  <a href="#events" className="hover:text-white transition">
+                    {text.eventsNav}
+                  </a>
+                )}
 
                 <a href="#join" className="hover:text-white transition">
                   {text.join}
@@ -487,6 +544,73 @@ hover:bg-white/[0.05]
             </div>
           </div>
         </section>
+
+        {events.length > 0 && (
+          <section
+            id="events"
+            className="border-t border-white/10 bg-zinc-950 px-6 py-24"
+          >
+            <div className="mx-auto max-w-7xl">
+              <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-amber-400/80">
+                {text.eventsEyebrow}
+              </p>
+
+              <h2 className="mb-4 text-4xl md:text-6xl font-black uppercase leading-tight">
+                {text.eventsTitle}
+              </h2>
+
+              <p className="mb-14 max-w-2xl text-lg leading-relaxed text-zinc-400">
+                {text.eventsText}
+              </p>
+
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {events.map((e) => (
+                  <article
+                    key={e.id}
+                    className="group flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-all duration-500 hover:border-amber-400/30 hover:bg-white/[0.05]"
+                  >
+                    {e.image_url && (
+                      <img
+                        src={e.image_url}
+                        alt={e.title}
+                        className="aspect-video w-full object-cover"
+                      />
+                    )}
+
+                    <div className="flex flex-1 flex-col p-7">
+                      <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-amber-400/80">
+                        {formatEventDate(e.event_date)}
+                      </p>
+
+                      <h3 className="text-xl font-black uppercase leading-tight transition group-hover:text-amber-300">
+                        {e.title}
+                      </h3>
+
+                      {e.description && (
+                        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-400">
+                          {e.description}
+                        </p>
+                      )}
+
+                      <p className="mt-auto pt-5 text-sm text-zinc-500">
+                        {e.location}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-12">
+                <a
+                  href="#join"
+                  className="inline-block rounded-2xl bg-white px-10 py-5 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
+                >
+                  {text.eventsCta}
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section
           id="join"
