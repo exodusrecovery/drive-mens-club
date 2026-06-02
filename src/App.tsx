@@ -19,11 +19,11 @@ function App() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // Pull real upcoming events from the cabinet (proxied at /cabinet). Soft
-  // failure: if it's unreachable, the section just stays hidden.
+  // Pull real upcoming events from the cabinet (proxied at /cabinet), translated
+  // to the chosen language. Soft failure: if unreachable, the section stays hidden.
   useEffect(() => {
     let active = true
-    fetch("/cabinet/api/public/events")
+    fetch(`/cabinet/api/public/events?lang=${language}`)
       .then((r) => (r.ok ? r.json() : { events: [] }))
       .then((d) => {
         if (active) setEvents(Array.isArray(d?.events) ? d.events : [])
@@ -32,7 +32,7 @@ function App() {
     return () => {
       active = false
     }
-  }, [])
+  }, [language])
 
   const locale = language === "ru" ? "ru-RU" : language === "ua" ? "uk-UA" : "en-US"
   const formatEventDate = (iso: string) =>
