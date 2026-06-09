@@ -632,8 +632,7 @@ hover:bg-white/[0.05]
             </p>
 
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScTUx8UHNaJsEZxeHvbN9pbho-hjas-fdPfXQloZYvHa3w4dQ/viewform"
-              target="_blank"
+              href="/cabinet/register"
               className="mt-10 inline-block rounded-2xl bg-white px-10 py-5 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
             >
               {text.registerBtn}
