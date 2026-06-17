@@ -35,13 +35,12 @@ function App() {
   }, [language])
 
   const locale = language === "ru" ? "ru-RU" : language === "ua" ? "uk-UA" : "en-US"
-  const formatEventDate = (iso: string) =>
-    new Date(iso).toLocaleString(locale, {
-      day: "numeric",
-      month: "long",
-      hour: "2-digit",
-      minute: "2-digit",
-    })
+  const formatEventDate = (iso: string) => {
+    const d = new Date(iso)
+    const day = d.toLocaleDateString(locale, { day: "numeric", month: "long" })
+    const time = d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })
+    return `${day}, ${time}`
+  }
 
   const enterSite = async () => {
     setEntered(true)
@@ -343,7 +342,7 @@ function App() {
                   </a>
                 )}
 
-                <a href="#join" className="hover:text-white transition">
+                <a href="/cabinet/register" className="hover:text-white transition">
                   {text.join}
                 </a>
               </nav>
@@ -418,7 +417,7 @@ function App() {
 
               <div className="mt-10 flex flex-wrap gap-4">
                 <a
-                  href="#join"
+                  href="/cabinet/register"
                   className="rounded-2xl bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
                 >
                   {text.joinBtn}
@@ -503,7 +502,7 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
       {item.title}
     </p>
 
-    <p className="mt-4 max-h-0 overflow-hidden text-sm leading-relaxed text-zinc-400 opacity-0 transition-all duration-500 group-hover:max-h-40 group-hover:opacity-100">
+    <p className="mt-4 text-sm leading-relaxed text-zinc-400">
       {item.desc}
     </p>
   </div>
@@ -513,35 +512,6 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
             <p className="mt-14 max-w-3xl text-xl leading-relaxed text-zinc-300">
               {text.whyText}
             </p>
-          </div>
-        </section>
-
-        <section id="topics" className="px-6 py-24">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="mb-14 text-4xl md:text-6xl font-black uppercase">
-              {text.topicsTitle}
-            </h2>
-
-            <div className="grid gap-5 md:grid-cols-3">
-              {text.topicsList.map((topic) => (
-                <div
-                  key={topic}
-                  className="
-group
-rounded-[2rem]
-bg-white/[0.02]
-px-7
-py-5
-backdrop-blur-xl
-transition-all
-duration-500
-hover:bg-white/[0.05]
-"
-                >
-                  <p className="text-lg font-semibold">{topic}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -602,7 +572,7 @@ hover:bg-white/[0.05]
 
               <div className="mt-12">
                 <a
-                  href="#join"
+                  href="/cabinet/register"
                   className="inline-block rounded-2xl bg-white px-10 py-5 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
                 >
                   {text.eventsCta}
@@ -612,31 +582,32 @@ hover:bg-white/[0.05]
           </section>
         )}
 
-        <section
-          id="join"
-          className="border-t border-white/10 bg-zinc-950 px-6 py-24"
-        >
-          <div className="mx-auto max-w-5xl rounded-[2rem] border border-white/10 bg-black p-10 text-center md:p-16">
-            <img
-              src="/drive-logo.png"
-              alt="DRIVE"
-              className="mx-auto mb-8 h-32 w-auto"
-            />
-
-            <h2 className="text-4xl md:text-6xl font-black uppercase">
-              {text.nextMeeting}
+        <section id="topics" className="px-6 py-24">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="mb-14 text-4xl md:text-6xl font-black uppercase">
+              {text.topicsTitle}
             </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
-              {text.registerText}
-            </p>
-
-            <a
-              href="/cabinet/register"
-              className="mt-10 inline-block rounded-2xl bg-white px-10 py-5 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
-            >
-              {text.registerBtn}
-            </a>
+            <div className="grid gap-5 md:grid-cols-3">
+              {text.topicsList.map((topic) => (
+                <div
+                  key={topic}
+                  className="
+group
+rounded-[2rem]
+bg-white/[0.02]
+px-7
+py-5
+backdrop-blur-xl
+transition-all
+duration-500
+hover:bg-white/[0.05]
+"
+                >
+                  <p className="text-lg font-semibold">{topic}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
