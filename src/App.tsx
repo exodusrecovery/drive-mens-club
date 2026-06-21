@@ -1,4 +1,28 @@
 import { useEffect, useRef, useState } from "react"
+import {
+  Globe,
+  Users,
+  Gauge,
+  Compass,
+  Briefcase,
+  HeartPulse,
+  Crown,
+  Dumbbell,
+  MessagesSquare,
+} from "lucide-react"
+
+// Иконки тем — по порядку списка (одинаковому во всех языках).
+const TOPIC_ICONS = [
+  Globe,
+  Users,
+  Gauge,
+  Compass,
+  Briefcase,
+  HeartPulse,
+  Crown,
+  Dumbbell,
+  MessagesSquare,
+]
 
 type ClubEvent = {
   id: string
@@ -589,25 +613,23 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
               {text.topicsTitle}
             </h2>
 
-            <div className="grid gap-5 md:grid-cols-3">
-              {text.topicsList.map((topic) => (
-                <div
-                  key={topic}
-                  className="
-group
-rounded-[2rem]
-bg-white/[0.02]
-px-7
-py-5
-backdrop-blur-xl
-transition-all
-duration-500
-hover:bg-white/[0.05]
-"
-                >
-                  <p className="text-lg font-semibold">{topic}</p>
-                </div>
-              ))}
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {text.topicsList.map((topic, i) => {
+                const Icon = TOPIC_ICONS[i % TOPIC_ICONS.length]
+                return (
+                  <div
+                    key={topic}
+                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] px-5 py-5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-amber-400/40 hover:from-amber-400/10"
+                  >
+                    <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300 transition duration-500 group-hover:scale-110 group-hover:bg-amber-400/20">
+                      <Icon className="size-6" />
+                    </span>
+                    <p className="text-base font-bold uppercase leading-tight tracking-wide">
+                      {topic}
+                    </p>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
