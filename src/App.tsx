@@ -415,7 +415,7 @@ function App() {
                 {text.heroText}
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-10 flex flex-wrap justify-center gap-4 md:justify-start">
                 <a
                   href="/cabinet/register"
                   className="rounded-2xl bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
@@ -571,7 +571,7 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
                 ))}
               </div>
 
-              <div className="mt-12">
+              <div className="mt-12 text-center md:text-left">
                 <a
                   href="/cabinet/register"
                   className="inline-block rounded-2xl bg-white px-10 py-5 text-sm font-black uppercase tracking-widest text-black transition hover:bg-zinc-200"
