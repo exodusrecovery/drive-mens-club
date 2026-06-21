@@ -535,8 +535,9 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {events.map((e) => (
-                  <article
+                  <a
                     key={e.id}
+                    href="/cabinet/register"
                     className="group flex flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-all duration-500 hover:border-amber-400/30 hover:bg-white/[0.05]"
                   >
                     {e.image_url && (
@@ -566,7 +567,7 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
                         {e.location}
                       </p>
                     </div>
-                  </article>
+                  </a>
                 ))}
               </div>
 
