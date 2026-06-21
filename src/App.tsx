@@ -11,6 +11,10 @@ import {
   MessagesSquare,
 } from "lucide-react"
 
+// Ссылка на карты по адресу (Google Maps; на телефоне предложит приложение).
+const mapsUrl = (address: string) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+
 // Иконки тем — по порядку списка (одинаковому во всех языках).
 const TOPIC_ICONS = [
   Globe,
@@ -587,9 +591,20 @@ hover:shadow-[0_0_40px_rgba(255,180,80,0.08)]
                         </p>
                       )}
 
-                      <p className="mt-auto pt-5 text-sm text-zinc-500">
-                        {e.location}
-                      </p>
+                      {e.location && (
+                        <p className="mt-auto pt-5 text-sm text-zinc-500">
+                          <span
+                            onClick={(ev) => {
+                              ev.preventDefault()
+                              ev.stopPropagation()
+                              window.open(mapsUrl(e.location), "_blank")
+                            }}
+                            className="cursor-pointer transition hover:text-amber-300 hover:underline"
+                          >
+                            {e.location}
+                          </span>
+                        </p>
+                      )}
                     </div>
                   </a>
                 ))}
